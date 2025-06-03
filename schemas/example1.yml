@@ -32,7 +32,7 @@ nodes:
     namespace: Auto
     label: WHEEL_LABEL
     human_friendly_id:
-      - type_value
+      - type__value
     description: "A wheel of the car, a critical component for movement."
     attributes:
       - name: wheel_size
