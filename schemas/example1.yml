@@ -1,9 +1,25 @@
 version: "1.0"
 
 nodes:
+  - name: Car2
+    namespace: Auto
+    label: CAR2_LABEL
+    description: "A vehicle used for transportation."
+    attributes:
+      - name: model
+        kind: Text
+        description: "The model of the car."
+      - name: year
+        kind: Number
+        description: "The manufacturing year of the car."
+      - name: license_plate
+        kind: Text
+        unique: true
+
+
   - name: Car
     namespace: Auto
-    label: DEVICE_LABEL
+    label: CAR_LABEL
     description: "A vehicle used for transportation."
     attributes:
       - name: model
@@ -50,6 +66,24 @@ nodes:
         kind: Parent
         cardinality: one  # Ja (Wheel)
         optional: false
+
+  - name: Person2
+    namespace: Auto
+    label: PERSON2_LABEL
+    description: "A person who may own a car."
+    attributes:
+      - name: first_name
+        kind: Text
+        description: "First name of the person."
+      - name: last_name
+        kind: Text
+        description: "Last name of the person."
+      - name: driver_license_number
+        kind: Text
+        unique: true
+        description: "Driver's license number."
+
+
 
   - name: Person
     namespace: Auto
