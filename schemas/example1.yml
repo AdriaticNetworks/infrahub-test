@@ -1,6 +1,25 @@
 version: "1.0"
 
 nodes:
+  - name: Engine
+    namespace: Auto
+    label: ENGINE_LABEL
+    description: "Car's engine"
+    attributes:
+      - name: no_gears
+        kind: Number
+        description: Number of gears
+      - name: fuel_type
+        kind: Text
+        description: Diesel or Petrol
+    relationships:
+      - name: parent_car
+        peer: AutoCar
+        kind: Parent
+        cardinality: one
+        optional: true
+
+
   - name: Car2
     namespace: Auto
     label: CAR2_LABEL
@@ -60,16 +79,22 @@ nodes:
         unique: true
         description: "License plate number."
     relationships:
-      - name: owner         # Ime varijable u kojoj cu reci kome pripadam je owner
-        peer: AutoPerson    # Imam vezu prema autu
-        kind: Attribute     # Vrsta veze s moje strane je Attribute
-        cardinality: one    # Ja (Car) mogu pripadati samo jednoj osobi
-        optional: false     # Kad kreiramo mene (Car) moramo specificirati kojo osobi pripadam
-
+      - name: owner
+        peer: AutoPerson
+        kind: Attribute
+        cardinality: one 
+        optional: false
       - name: wheels
         peer: AutoWheel
         kind: Component
         cardinality: many
+      - name: engine
+        peer: AutoEngine
+        kind: Component
+        cardinality: one
+        optional: true
+
+
 
   - name: Wheel
     namespace: Auto
