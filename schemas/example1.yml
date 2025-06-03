@@ -15,7 +15,34 @@ nodes:
       - name: license_plate
         kind: Text
         unique: true
+    relationships:
+      - name: owner
+        peer: AutoPerson2
+        kind: Attribute
+        cardinality: one
+        optional: false
 
+  - name: Person2
+    namespace: Auto
+    label: PERSON2_LABEL
+    description: "A person who may own a car."
+    attributes:
+      - name: first_name
+        kind: Text
+        description: "First name of the person."
+      - name: last_name
+        kind: Text
+        description: "Last name of the person."
+      - name: driver_license_number
+        kind: Text
+        unique: true
+        description: "Driver's license number."
+    relationships:
+      - name: cars
+        peer: AutoCar2
+        kind: Generic
+        cardinality: many
+        optional: true
 
   - name: Car
     namespace: Auto
@@ -67,21 +94,6 @@ nodes:
         cardinality: one  # Ja (Wheel)
         optional: false
 
-  - name: Person2
-    namespace: Auto
-    label: PERSON2_LABEL
-    description: "A person who may own a car."
-    attributes:
-      - name: first_name
-        kind: Text
-        description: "First name of the person."
-      - name: last_name
-        kind: Text
-        description: "Last name of the person."
-      - name: driver_license_number
-        kind: Text
-        unique: true
-        description: "Driver's license number."
 
 
 
