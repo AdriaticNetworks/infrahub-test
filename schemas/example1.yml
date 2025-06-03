@@ -92,7 +92,7 @@ nodes:
         peer: AutoEngine
         kind: Component
         cardinality: one
-        optional: true
+        # optional: true
 
 
 
