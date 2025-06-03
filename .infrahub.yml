@@ -1,16 +1,2 @@
-version: "1.0"
-nodes:
-  - name: Person
-    namespace: Example1
-    attributes:
-      - name: name
-        kind: Text
-        unique: true
-      - name: description
-        kind: Text
-        optional: true
-  - name: Car
-    namespace: Example1
-    attributes:
-      - name: model
-        kind: Text
+schemas:
+  - schemas/example1.yml
