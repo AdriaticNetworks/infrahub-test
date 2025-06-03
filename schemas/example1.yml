@@ -61,7 +61,7 @@ nodes:
         peer: AutoCar2
         kind: Generic
         cardinality: many
-        optional: true
+        # optional: true # Unable to load the schema : {'data': None, 'errors': [{'message': 'AutoEngine.parent_car: Relationship of type parent must not be optional', 'extensions': {'code': 422}}]}
 
   - name: Car
     namespace: Auto
