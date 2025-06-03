@@ -3,8 +3,7 @@ version: "1.0"
 nodes:
   - name: Car
     namespace: Auto
-    display_labels:
-      - model_value
+    label: DEVICE_LABEL
     description: "A vehicle used for transportation."
     attributes:
       - name: model
@@ -31,8 +30,7 @@ nodes:
 
   - name: Wheel
     namespace: Auto
-    display_labels:
-      - type_value
+    label: WHEEL_LABEL
     description: "A wheel of the car, a critical component for movement."
     attributes:
       - name: wheel_size
@@ -51,8 +49,7 @@ nodes:
 
   - name: Person
     namespace: Auto
-    display_labels:
-      - first_name_value
+    label: PERSON_LABEL
     description: "A person who may own a car."
     attributes:
       - name: first_name
