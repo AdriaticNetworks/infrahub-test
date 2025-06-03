@@ -13,9 +13,3 @@ nodes:
     attributes:
       - name: model
         kind: Text
-    relationships:
-      - name: owner
-        peer: Example1Person
-        optional: false
-        cardinality: one
-        kind: Attribute
