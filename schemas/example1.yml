@@ -1,21 +1,66 @@
+version: "1.0"
+
 nodes:
-  - name: Person
-    namespace: Example1
-    attributes:
-      - name: name
-        kind: Text
-        unique: true
-      - name: description
-        kind: Text
-        optional: true
   - name: Car
-    namespace: Example1
+    namespace: Auto
+    description: "A vehicle used for transportation."
     attributes:
       - name: model
         kind: Text
+        description: "The model of the car."
+      - name: year
+        kind: Number
+        description: "The manufacturing year of the car."
+      - name: license_plate
+        kind: Text
+        unique: true
+        description: "License plate number."
     relationships:
       - name: owner
-        peer: Example1Person
-        optional: false
-        cardinality: one
+        peer: AutoPerson
         kind: Attribute
+        cardinality: one
+        optional: false
+      - name: wheels
+        peer: AutoWheel
+        kind: Component
+        cardinality: many
+
+  - name: Wheel
+    namespace: Auto
+    description: "A wheel of the car, a critical component for movement."
+    attributes:
+      - name: wheel_size
+        kind: Number
+        description: "Size of the wheel in inches."
+      - name: type
+        kind: Text
+        description: "Type of the wheel (e.g., alloy, steel)."
+    relationships:
+      # A wheel must belong to a car, hence the Parent relationship is mandatory
+      - name: car
+        peer: AutoCar
+        kind: Parent
+        cardinality: one
+        optional: false
+
+  - name: Person
+    namespace: Auto
+    description: "A person who may own a car."
+    attributes:
+      - name: first_name
+        kind: Text
+        description: "First name of the person."
+      - name: last_name
+        kind: Text
+        description: "Last name of the person."
+      - name: driver_license_number
+        kind: Text
+        unique: true
+        description: "Driver's license number."
+    relationships:
+      - name: cars
+        peer: AutoCar
+        kind: Component
+        cardinality: many
+        optional: true
