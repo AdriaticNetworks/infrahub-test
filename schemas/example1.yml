@@ -3,6 +3,8 @@ version: "1.0"
 nodes:
   - name: Car
     namespace: Auto
+    display_labels:
+      - model_value
     description: "A vehicle used for transportation."
     attributes:
       - name: model
@@ -16,11 +18,12 @@ nodes:
         unique: true
         description: "License plate number."
     relationships:
-      - name: owner
-        peer: AutoPerson
-        kind: Attribute
-        cardinality: one
-        optional: false
+      - name: owner         # Ime varijable u kojoj cu reci kome pripadam je owner
+        peer: AutoPerson    # Imam vezu prema autu
+        kind: Attribute     # Vrsta veze s moje strane je Attribute
+        cardinality: one    # Ja (Car) mogu pripadati samo jednoj osobi
+        optional: false     # Kad kreiramo mene (Car) moramo specificirati kojo osobi pripadam
+
       - name: wheels
         peer: AutoWheel
         kind: Component
@@ -28,6 +31,8 @@ nodes:
 
   - name: Wheel
     namespace: Auto
+    display_labels:
+      - type_value
     description: "A wheel of the car, a critical component for movement."
     attributes:
       - name: wheel_size
@@ -41,11 +46,13 @@ nodes:
       - name: car
         peer: AutoCar
         kind: Parent
-        cardinality: one
+        cardinality: one  # Ja (Wheel)
         optional: false
 
   - name: Person
     namespace: Auto
+    display_labels:
+      - first_name_value
     description: "A person who may own a car."
     attributes:
       - name: first_name
@@ -59,8 +66,14 @@ nodes:
         unique: true
         description: "Driver's license number."
     relationships:
-      - name: cars
-        peer: AutoCar
-        kind: Component
-        cardinality: many
-        optional: true
+      - name: cars         # informacije o tome koje aute imam nalaze se u varijabli cars
+        peer: AutoCar      # Imam vezu prema Car, iz Namsespace Auto
+        kind: Component    # Vrsta veze s moje strane je Component
+        cardinality: many  # Ja (Person) mogu imati vise automobila
+        optional: true     # Kada kreiramo mene (Person) ne moramo specificirati koje aute imam
+
+# Kad kreiras Person ne moras specificirati s kojim autom je povezana.
+# Kad kreiras Car moras specifificirati kojoj osobi (owner) on pripada
+# Car   <--->   Person
+# Jedan auto moze pripadati samo jednoj osobi
+# Jedna osoba moze imati vise automibla
